@@ -12,7 +12,7 @@ extension UILabel {
         self.init()
         self.text = text
         self.font = font
-        self.textColor = UIColor(named: "grayLabelColor")
+        self.textColor = .grayLabel
         self.textAlignment = .left
         self.translatesAutoresizingMaskIntoConstraints = false
     }

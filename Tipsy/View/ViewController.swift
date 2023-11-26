@@ -12,15 +12,17 @@ class ViewController: UIViewController {
     
 // -MARK: TopStack UI
     
-    private lazy var topStackView: UIStackView = {
-        var stack = UIStackView()
-        stack.axis = .vertical
-        stack.alignment = .center
-        stack.distribution = .fill
-        stack.spacing = 26
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
+    private lazy var topStackView = UIStackView(
+        axis: .vertical,
+        alignment: .center,
+        distribution: .fill,
+        spacing: 26,
+        subview: [
+            enterBillTotalLabel,
+            billTextField
+        ]
+    )
+
     
     private lazy var enterBillTotalLabel = UILabel(
         text: "Enter bill total",
@@ -29,7 +31,7 @@ class ViewController: UIViewController {
     
     private lazy var billTextField: UITextField = {
         var textField = UITextField()
-        textField.textColor = UIColor(named: "greenButtonColor")
+        textField.textColor = .greenButton
         textField.placeholder = "e.g. 123.56"
         textField.textAlignment = .center
         textField.font = .systemFont(ofSize: 40)
@@ -47,30 +49,83 @@ class ViewController: UIViewController {
         return view
     }()
     
-    private lazy var bigSelectorStack: UIStackView = {
-        var stack = UIStackView()
-        stack.axis = .vertical
-        stack.alignment = .center
-        stack.distribution = .fill
-        stack.spacing = 26
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
+    private lazy var bigSelectorStack = UIStackView(
+        axis: .vertical,
+        alignment: .center,
+        distribution: .fill,
+        spacing: 26,
+        subview: [
+            selectTipLabel,
+            pctButtonsStack
+        ]
+    )
     
     private lazy var selectTipLabel =  UILabel(
         text: "Select tip",
         font: .systemFont(ofSize: 25)
     )
     
-    private lazy var pctButtonsStack: UIStackView = {
-        var stack = UIStackView()
-        stack.axis = .horizontal
-        stack.alignment = .fill
-        stack.distribution = .fillProportionally
-        stack.spacing = 0
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
+    private lazy var pctButtonsStack = UIStackView(
+        axis: .horizontal,
+        alignment: .fill,
+        distribution: .fillProportionally,
+        spacing: 0,
+        subview: [
+            zeroPctButton,
+            tenPctButton,
+            twentyPctButton
+        ]
+    )
+    
+    private lazy var zeroPctButton: UIButton = {
+        var button = UIButton(
+            text: "0%",
+            tintColor: .clear,
+            target: self,
+            action: #selector(pctButtonTapped)
+        )
+        button.backgroundColor = .clear
+        button.setTitleColor(.greenButton, for: .normal)
+        button.setTitleColor(.customWhite, for: .selected)
+        button.titleLabel?.textColor = .black
+        button.layer.cornerRadius = 10
+        return button
+        
     }()
+    
+    private lazy var tenPctButton: UIButton = {
+        var button = UIButton(
+            text: "10%",
+            tintColor: .clear,
+            target: self,
+            action: #selector(pctButtonTapped)
+        )
+        button.backgroundColor = .clear
+        button.isSelected = true
+        button.titleLabel?.textColor = .black
+        button.layer.cornerRadius = 10
+        return button
+        
+    }()
+    
+    private lazy var twentyPctButton: UIButton = {
+        var button = UIButton(
+            text: "20%",
+            tintColor: .clear,
+            target: self,
+            action: #selector(pctButtonTapped)
+        )
+        button.backgroundColor = .clear
+        button.setTitleColor(.greenButton, for: .normal)
+        button.setTitleColor(.customWhite, for: .selected)
+        button.titleLabel?.textColor = .black
+        button.layer.cornerRadius = 10
+        return button
+        
+    }()
+    
+    
+
     
     
     
@@ -86,11 +141,7 @@ class ViewController: UIViewController {
     private func setupUI() {
         view.addSubview(greenBottomView)
         view.addSubview(topStackView)
-        topStackView.addArrangedSubview(enterBillTotalLabel)
-        topStackView.addArrangedSubview(billTextField)
         greenBottomView.addSubview(bigSelectorStack)
-        bigSelectorStack.addArrangedSubview(selectTipLabel)
-        bigSelectorStack.addArrangedSubview(pctButtonsStack)
     }
     
     private func setupConstraints() {
@@ -138,6 +189,10 @@ class ViewController: UIViewController {
         }
         
         
+        
+    }
+    
+    @objc func pctButtonTapped() {
         
     }
 }
