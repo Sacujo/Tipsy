@@ -56,7 +56,9 @@ class ViewController: UIViewController {
         spacing: 26,
         subview: [
             selectTipLabel,
-            pctButtonsStack
+            pctButtonsStack,
+            chooseSplitLabel,
+            splitNumberStack
         ]
     )
     
@@ -125,6 +127,53 @@ class ViewController: UIViewController {
     }()
     
     
+    private lazy var chooseSplitLabel = UILabel(
+        text: "Choose Split",
+        font: .systemFont(ofSize: 25)
+    )
+    
+    private lazy var splitNumberStack = UIStackView(
+        axis: .horizontal,
+        alignment: .fill,
+        distribution: .fill,
+        spacing: 27,
+        subview: [
+            splitNumberLabel,
+            splitNumberStepper
+        ]
+    )
+    
+    private lazy var splitNumberLabel: UILabel = {
+        var label = UILabel(
+            text: "2",
+            font: .systemFont(ofSize: 35)
+        )
+        label.textColor = .greenButton
+        return label
+    }()
+    
+    private lazy var splitNumberStepper: UIStepper = {
+        var stepper = UIStepper()
+        stepper.value = 2
+        stepper.minimumValue = 2
+        stepper.maximumValue = 25
+        stepper.stepValue = 1
+        stepper.autorepeat = true
+        stepper.isContinuous = true
+        return stepper
+        
+    }()
+    
+    private lazy var calculateButton: UIButton = {
+        var button = UIButton()
+        button.backgroundColor = .greenButton
+        button.setTitle("Calculate", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 35)
+        return button
+    }()
+    
+    
+    
 
     
     
@@ -142,6 +191,7 @@ class ViewController: UIViewController {
         view.addSubview(greenBottomView)
         view.addSubview(topStackView)
         greenBottomView.addSubview(bigSelectorStack)
+        greenBottomView.addSubview(calculateButton)
     }
     
     private func setupConstraints() {
@@ -174,7 +224,7 @@ class ViewController: UIViewController {
         
         bigSelectorStack.snp.makeConstraints{ make in
             make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalToSuperview().offset(20)
         }
         
@@ -188,7 +238,43 @@ class ViewController: UIViewController {
             make.trailing.equalToSuperview()
         }
         
+        zeroPctButton.snp.makeConstraints{ make in
+            make.width.greaterThanOrEqualTo(60)
+            make.height.equalTo(54)
+        }
         
+        tenPctButton.snp.makeConstraints{ make in
+            make.height.equalTo(54)
+        }
+        
+        twentyPctButton.snp.makeConstraints{ make in
+            make.height.equalTo(54)
+            make.width.equalTo(zeroPctButton.snp.width)
+        }
+        
+        chooseSplitLabel.snp.makeConstraints{ make in
+            make.height.equalTo(30)
+            make.trailing.equalToSuperview().offset(-30)
+            make.leading.equalToSuperview().offset(30)
+        }
+        
+        splitNumberLabel.snp.makeConstraints{ make in
+            make.width.equalTo(93)
+            make.height.equalTo(29)
+        }
+        
+        splitNumberStepper.snp.makeConstraints{ make in
+            make.width.equalTo(94)
+            make.height.equalTo(29)
+        }
+        
+        calculateButton.snp.makeConstraints{ make in
+            make.width.greaterThanOrEqualTo(200)
+            make.height.equalTo(54)
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            
+        }
         
     }
     
