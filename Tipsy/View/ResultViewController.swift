@@ -41,11 +41,31 @@ class ResultViewController: UIViewController {
         return label
     }()
     
+    private lazy var splitBetwinLabel: UILabel = {
+        var label = UILabel(
+            text: "Split between 2 people, with 10% tip.",
+            font: .systemFont(ofSize: 25)
+        )
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var recalculateButton: UIButton = {
+        var button = UIButton()
+        button.backgroundColor = .greenButton
+        button.setTitle("Recalculate", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 35)
+        return button
+    }()
+    
     
     private func setupUI() {
         view.addSubview(greenTopView)
         greenTopView.addSubview(totalPerPersonLabel)
         greenTopView.addSubview(calculatedRusultLabel)
+        view.addSubview(splitBetwinLabel)
+        view.addSubview(recalculateButton)
     }
     
     private func setupConstraints() {
@@ -68,6 +88,21 @@ class ResultViewController: UIViewController {
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.top.equalTo(totalPerPersonLabel.snp.bottom)
+        }
+        
+        splitBetwinLabel.snp.makeConstraints { make in
+            make.height.equalTo(117)
+            make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(50)
+            make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-50)
+            make.top.equalTo(greenTopView.snp.bottom).offset(5)
+        }
+        
+        recalculateButton.snp.makeConstraints{ make in
+            make.width.greaterThanOrEqualTo(200)
+            make.height.equalTo(54)
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            
         }
     }
     
