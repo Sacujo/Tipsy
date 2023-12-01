@@ -10,7 +10,9 @@ import SnapKit
 
 class CalculateViewController: UIViewController {
     
-// -MARK: TopStack UI
+    // -MARK: TopStack UI
+    
+    private var persent: Float = 0.1
     
     private lazy var topStackView = UIStackView(
         axis: .vertical,
@@ -22,7 +24,7 @@ class CalculateViewController: UIViewController {
             billTextField
         ]
     )
-
+    
     
     private lazy var enterBillTotalLabel = UILabel(
         text: "Enter bill total",
@@ -175,46 +177,34 @@ class CalculateViewController: UIViewController {
     }()
     
     
-    @objc private func tipChanged(sender: UIButton) {
-        for button in [zeroPctButton, tenPctButton, twentyPctButton] {
-            if button == sender {
-                button.backgroundColor = .greenButton
-                button.isSelected = true
-            } else {
-                button.backgroundColor = .clear
-                button.isSelected = false
-            }
-        }
-    }
-    
-    @objc private func stepperValueChanged() {
-        
-    }
-    
-    @objc private func calculateButtonTapped() {
-        
-    }
-    
-    
-
-    
-    
-    
-    // -MARK: View Methods
+// -MARK: Override methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         setupUI()
-        setupConstraints()
     }
     
+}
+    
+    
+    
+
+// -MARK: SetupView
+
+private extension CalculateViewController {
     private func setupUI() {
+        view.backgroundColor = .white
         view.addSubview(greenBottomView)
         view.addSubview(topStackView)
         greenBottomView.addSubview(bigSelectorStack)
         greenBottomView.addSubview(calculateButton)
+        setupConstraints()
     }
+}
+
+// -MARK: Layout
+
+private extension CalculateViewController {
     
     private func setupConstraints() {
         topStackView.snp.makeConstraints { make in
@@ -303,4 +293,34 @@ class CalculateViewController: UIViewController {
     
 }
 
+// -MARK: Methods
+
+private extension CalculateViewController{
+    @objc func tipChanged(sender: UIButton) {
+        for button in [zeroPctButton, tenPctButton, twentyPctButton] {
+            if button == sender {
+                button.backgroundColor = .greenButton
+                button.isSelected = true
+                persent = Float(button.currentTitle!.dropLast())! / 100
+            } else {
+                button.backgroundColor = .clear
+                button.isSelected = false
+            }
+        }
+    }
+    
+    @objc func stepperValueChanged() {
+        splitNumberLabel.text = String(Int(splitNumberStepper.value))
+        
+    }
+    
+    
+    
+    @objc func calculateButtonTapped() {
+        let calculatedResault = (Float(billTextField.text ?? "0")! + Float(billTextField.text ?? "0")! * persent) / Float(splitNumberStepper.value)
+        let vc = ResultViewController()
+        vc.setResults(String(calculatedResault), Int(self.persent * 100) ,Int(self.splitNumberStepper.value))
+        present(vc, animated: true)
+        }
+    }
 #Preview { CalculateViewController() }

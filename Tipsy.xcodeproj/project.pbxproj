@@ -10,6 +10,7 @@
 		1522E0732B13ED6600DA5F7D /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1522E0722B13ED6600DA5F7D /* Extension + UIStackView.swift */; };
 		1522E0752B13EF9D00DA5F7D /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1522E0742B13EF9D00DA5F7D /* Extension + UIButton.swift */; };
 		1522E0772B1663D000DA5F7D /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1522E0762B1663D000DA5F7D /* ResultViewController.swift */; };
+		1522E07A2B1A0ACF00DA5F7D /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1522E0792B1A0ACF00DA5F7D /* IQKeyboardManagerSwift */; };
 		15F0AC2C2B13E7FF007BD055 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0AC2B2B13E7FF007BD055 /* Extension + UILabel.swift */; };
 		15FF4E0E2B128D0900AB34E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FF4E0D2B128D0900AB34E5 /* AppDelegate.swift */; };
 		15FF4E102B128D0900AB34E5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FF4E0F2B128D0900AB34E5 /* SceneDelegate.swift */; };
@@ -39,6 +40,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15FF4E232B12A19100AB34E5 /* SnapKit in Frameworks */,
+				1522E07A2B1A0ACF00DA5F7D /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +114,7 @@
 			name = Tipsy;
 			packageProductDependencies = (
 				15FF4E222B12A19100AB34E5 /* SnapKit */,
+				1522E0792B1A0ACF00DA5F7D /* IQKeyboardManagerSwift */,
 			);
 			productName = Tipsy;
 			productReference = 15FF4E0A2B128D0900AB34E5 /* Tipsy.app */;
@@ -143,6 +146,7 @@
 			mainGroup = 15FF4E012B128D0900AB34E5;
 			packageReferences = (
 				15FF4E212B12A19100AB34E5 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				1522E0782B1A0ACF00DA5F7D /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 15FF4E0B2B128D0900AB34E5 /* Products */;
 			projectDirPath = "";
@@ -391,6 +395,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1522E0782B1A0ACF00DA5F7D /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.16;
+			};
+		};
 		15FF4E212B12A19100AB34E5 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -402,6 +414,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1522E0792B1A0ACF00DA5F7D /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1522E0782B1A0ACF00DA5F7D /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
 		15FF4E222B12A19100AB34E5 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 15FF4E212B12A19100AB34E5 /* XCRemoteSwiftPackageReference "SnapKit" */;

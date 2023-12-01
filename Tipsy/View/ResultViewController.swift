@@ -17,6 +17,10 @@ class ResultViewController: UIViewController {
         setupConstraints()
     }
     
+    var result = "0.0"
+    var tip = 10
+    var split = 2
+    
     private lazy var greenTopView: UIView = {
         var view = UIView()
         view.backgroundColor = .lightGreenBackground
@@ -34,7 +38,7 @@ class ResultViewController: UIViewController {
     
     private lazy var calculatedRusultLabel: UILabel = {
         var label = UILabel()
-        label.text = "56.32"
+        label.text = result
         label.font = .boldSystemFont(ofSize: 45)
         label.textColor = .greenButton
         label.textAlignment = .center
@@ -43,7 +47,7 @@ class ResultViewController: UIViewController {
     
     private lazy var splitBetwinLabel: UILabel = {
         var label = UILabel(
-            text: "Split between 2 people, with 10% tip.",
+            text: "Split between \(split) people, with \(tip)% tip.",
             font: .systemFont(ofSize: 25)
         )
         label.textAlignment = .center
@@ -61,7 +65,7 @@ class ResultViewController: UIViewController {
     }()
     
     @objc private func recalculateButtonTapped() {
-        
+        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -109,6 +113,12 @@ class ResultViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             
         }
+    }
+    
+    func setResults(_ calculatedResault: String,_ newTip: Int,_ newSplit: Int) {
+        result = calculatedResault
+        tip = newTip
+        split = newSplit
     }
     
     

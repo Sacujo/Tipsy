@@ -17,10 +17,6 @@ extension UIButton {
         if let text = text {
             setTitle(text, for: .normal)
         }
-//        layer.shadowColor = UIColor.black.cgColor
-//        layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-//        layer.shadowOpacity = 0.5
-//        layer.shadowRadius = 1.0
         self.tintColor = tintColor
         self.isEnabled = true
         self.titleLabel?.font = .systemFont(ofSize: 35)
@@ -28,9 +24,6 @@ extension UIButton {
         self.setTitleColor(.greenButton, for: .normal)
         self.setTitleColor(.customWhite, for: .selected)
         self.titleLabel?.textColor = .greenButton
-        
-//        self.textColor = textColor
-//        self.backgroundColor = backgroundColor
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
