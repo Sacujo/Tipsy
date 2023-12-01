@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
+class CalculateViewController: UIViewController {
     
 // -MARK: TopStack UI
     
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
             text: "0%",
             tintColor: .clear,
             target: self,
-            action: #selector(pctButtonTapped)
+            action: #selector(tipChanged)
         )
         button.backgroundColor = .clear
         button.setTitleColor(.greenButton, for: .normal)
@@ -100,9 +100,9 @@ class ViewController: UIViewController {
             text: "10%",
             tintColor: .clear,
             target: self,
-            action: #selector(pctButtonTapped)
+            action: #selector(tipChanged)
         )
-        button.backgroundColor = .clear
+        button.backgroundColor = .greenButton
         button.isSelected = true
         button.titleLabel?.textColor = .black
         button.layer.cornerRadius = 10
@@ -115,7 +115,7 @@ class ViewController: UIViewController {
             text: "20%",
             tintColor: .clear,
             target: self,
-            action: #selector(pctButtonTapped)
+            action: #selector(tipChanged)
         )
         button.backgroundColor = .clear
         button.setTitleColor(.greenButton, for: .normal)
@@ -160,6 +160,7 @@ class ViewController: UIViewController {
         stepper.stepValue = 1
         stepper.autorepeat = true
         stepper.isContinuous = true
+        stepper.addTarget(self, action: #selector(stepperValueChanged), for: .touchUpInside)
         return stepper
         
     }()
@@ -169,9 +170,30 @@ class ViewController: UIViewController {
         button.backgroundColor = .greenButton
         button.setTitle("Calculate", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 35)
+        button.addTarget(self, action: #selector(calculateButtonTapped), for: .touchUpInside)
         return button
     }()
     
+    
+    @objc private func tipChanged(sender: UIButton) {
+        for button in [zeroPctButton, tenPctButton, twentyPctButton] {
+            if button == sender {
+                button.backgroundColor = .greenButton
+                button.isSelected = true
+            } else {
+                button.backgroundColor = .clear
+                button.isSelected = false
+            }
+        }
+    }
+    
+    @objc private func stepperValueChanged() {
+        
+    }
+    
+    @objc private func calculateButtonTapped() {
+        
+    }
     
     
 
@@ -245,6 +267,7 @@ class ViewController: UIViewController {
         
         tenPctButton.snp.makeConstraints{ make in
             make.height.equalTo(54)
+            make.width.equalTo(zeroPctButton.snp.width)
         }
         
         twentyPctButton.snp.makeConstraints{ make in
@@ -278,9 +301,6 @@ class ViewController: UIViewController {
         
     }
     
-    @objc func pctButtonTapped() {
-        
-    }
 }
 
-#Preview { ViewController() }
+#Preview { CalculateViewController() }

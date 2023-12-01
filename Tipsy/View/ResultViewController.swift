@@ -56,8 +56,13 @@ class ResultViewController: UIViewController {
         button.backgroundColor = .greenButton
         button.setTitle("Recalculate", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 35)
+        button.addTarget(self, action: #selector(recalculateButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+    @objc private func recalculateButtonTapped() {
+        
+    }
     
     
     private func setupUI() {
